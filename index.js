@@ -59,6 +59,10 @@ app.post("/signup", async (req, res) => {
 
 app.use("/discount", discuntRoute);
 
+app.get("/", (req, res) => {
+    res.send("welcome to home page")
+})
+
 app.listen(process.env.port, async()=>{
     try{
         await connection;
