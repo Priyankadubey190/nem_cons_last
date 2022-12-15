@@ -1,10 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
 require('dotenv').config();
-const {authentication} = require('./middleware/authentication')
-const {discuntRoute} = require("./routes/discount.route")
-const {connection} = require('./config/db')
+
+const {authentication} = require('./middleware/authentication');
+const {discuntRoute} = require("./routes/discount.route");
+const {connection} = require('./config/db');
+const {allproductRoute} = require("./routes/allproduct.route");
+const {furnitureRoute} = require("./routes/furniture.route");
+const {laptopRoute} = require("./routes/laptop.route");
+const {mobileRoute} = require("./routes/mobile.route");
+
 const app = express();
+app.use(express.json());
+
 
 app.post("/signup", async (req, res) => {
     const {email, password} = req.body;
@@ -58,6 +67,12 @@ app.post("/signup", async (req, res) => {
   })
 
 app.use("/discount", discuntRoute);
+app.use("/products", allproductRoute);
+app.use("/furnitures", furnitureRoute);
+app.use("/laptop", laptopRoute);
+app.use("/mobile", mobileRoute);
+
+
 
 app.get("/", (req, res) => {
     res.send("welcome to home page")
