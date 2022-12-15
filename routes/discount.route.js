@@ -8,7 +8,7 @@ discuntRoute.get("/", async(req,res)=>{
     res.send(data);
 })
 
-discuntRoute.post("discount/create", async(req,res)=>{
+discuntRoute.post("/create", async(req,res)=>{
     let payload = req.body;
     try{
         const data = await DiscuntModel.insertMany([payload]);
