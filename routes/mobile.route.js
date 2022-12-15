@@ -4,7 +4,7 @@ const mobileRoute = Router();
 
 mobileRoute.get("/", async(req,res)=>{
     let query = req.query;
-    const data = await LaptopModel.find(query);
+    const data = await MobileModel.find(query);
     res.send(data);
 })
 
