@@ -6,7 +6,7 @@ const womencartRoute = Router();
 
 womencartRoute.delete("/delete", async(req,res)=>{
     try{
-       let data = await WomenWishListModel.deleteMany({id,image,color,price,review,userID});
+       let data = await WomenWishListModel.deleteMany({});
        let cart = await WomenCartModel.insertMany([data])
        res.send(cart);
     }

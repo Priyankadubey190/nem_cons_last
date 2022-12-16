@@ -79,7 +79,7 @@ app.use("/laptop", laptopRoute);
 app.use("/mobile", mobileRoute);
 app.use("/womendata", womenRoute)
 app.use("/womenwishlist", womenwishlistRoute)
-app.use("/womencart", womencartRoute);
+app.use("/c", womencartRoute);
 
 app.get("/", (req, res) => {
     res.send("welcome to home page")

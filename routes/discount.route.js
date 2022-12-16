@@ -20,4 +20,27 @@ discuntRoute.post("/create", async(req,res)=>{
     }
 })
 
+discuntRoute.patch("/patch/:id", async(req,res)=>{
+    try{
+      const ids = req.params.id
+      const payload = req.body
+      const latest_data = await DiscuntModel.findByIdAndUpdate({_id:ids},payload)
+      res.send("discount data has updatet")
+    }
+    catch(err){
+        console.log("err",err)
+    }
+})
+
+discuntRoute.delete("/delete/:id", async(req,res)=>{
+    try{
+        const ids = req.params.id
+      const latest_data = await DiscuntModel.findByIdAndDelete({_id:ids})
+      res.send("discount data has deleted");
+    }
+    catch(err){
+      console.log("err",err);
+    }
+})
+
 module.exports = {discuntRoute}

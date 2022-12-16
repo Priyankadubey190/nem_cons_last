@@ -3,9 +3,18 @@ const {AllproductModel} = require("../models/Allproduct.model")
 const allproductRoute = Router();
 
 allproductRoute.get("/", async(req,res)=>{
-    let query = req.query;
-    const data = await AllproductModel.find(query);
-    res.send(data);
+    try{
+        let query = req.query;
+        let size = query.size || 9;
+        let page = query.page || 1;
+
+        const data = await AllproductModel.find(query).limit(size).skip((page-1)*size);
+        res.send(data);
+    }
+    catch(err){
+        console.log("err",err);
+    }
+    
 })
 
 module.exports = {allproductRoute}
