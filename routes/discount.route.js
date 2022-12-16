@@ -8,6 +8,13 @@ discuntRoute.get("/", async(req,res)=>{
     res.send(data);
 })
 
+discuntRoute.get("/search/:code",(req,res)=>{
+    const regex = new RegExp(req.params.code, "i");
+    DiscuntModel.find({code:regex}).then((result)=>{
+        res.status(200).json(result);
+    })
+})
+
 discuntRoute.post("/create", async(req,res)=>{
     let payload = req.body;
     try{

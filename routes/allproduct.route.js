@@ -17,4 +17,23 @@ allproductRoute.get("/", async(req,res)=>{
     
 })
 
+allproductRoute.post("/post", async(req,res)=>{
+    let payload = res.body;
+    const data = await AllproductModel.insertMany([payload]);
+    res.send(data);
+})
+
+allproductRoute.patch("/patch/:id", async(req,res)=>{
+    let ids = req.params.id
+    let payload = req.body;
+    const data = await AllproductModel.findByIdAndUpdate({_id:ids},payload)
+    res.send(data)
+})
+
+allproductRoute.delete("/delete/:id", async(req,res)=>{
+    let ids = req.params.id
+    const data = await AllproductModel.findByIdAndDelete({_id:ids})
+    res.send(data)
+})
+
 module.exports = {allproductRoute}
