@@ -18,9 +18,15 @@ allproductRoute.get("/", async(req,res)=>{
 })
 
 allproductRoute.post("/post", async(req,res)=>{
-    let payload = res.body;
-    const data = await AllproductModel.insertMany([payload]);
-    res.send(data);
+    try{
+        let payload = req.body;
+        const data = await AllproductModel.insertMany([payload]);
+        res.send(data);
+    }
+    catch(err){
+        console.log("err",err);
+    }
+    
 })
 
 allproductRoute.patch("/patch/:id", async(req,res)=>{
