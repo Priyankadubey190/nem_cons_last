@@ -4,16 +4,24 @@ const discuntRoute = Router();
 
 discuntRoute.get("/", async(req,res)=>{
     let query = req.query;
-    const data = await DiscuntModel.find(query);
-    res.send(data);
+    let {q} = req.query
+    if(q){
+        let query_data = await DiscuntModel.find({code:{"$regex":q, $options:"i"}})
+        return res.send(query_data)
+    }
+    else{
+        const data = await DiscuntModel.find(query);
+        return res.send(data);
+    }
+    
 })
 
-discuntRoute.get("/search/:code",(req,res)=>{
-    const regex = new RegExp(req.params.code, "i");
-    DiscuntModel.find({code:regex}).then((result)=>{
-        res.status(200).json(result);
-    })
-})
+// discuntRoute.get("/search/:code",(req,res)=>{
+//     const regex = new RegExp(req.params.code, "i");
+//     DiscuntModel.find({code:regex}).then((result)=>{
+//         res.status(200).json(result);
+//     })
+// })
 
 discuntRoute.post("/create", async(req,res)=>{
     let payload = req.body;
